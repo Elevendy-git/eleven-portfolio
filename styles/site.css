@@ -7,28 +7,6 @@
   font-size: clamp(13px, 1.4vw, 16px);
 }
 
-.vibe-placeholder-card .pinfo-main {
-  cursor: default;
-}
-
-html.has-cursor-fx .vibe-placeholder-card .pinfo-main {
-  cursor: none;
-}
-
-.vibe-placeholder-card .pbrand {
-  display: grid;
-  place-items: center;
-  color: var(--ink, #242424);
-  background: var(--hl, #ffe28a);
-  font: 700 20px/1 ui-monospace, monospace;
-}
-
-@media (max-width: 760px) {
-  .vibe-placeholder-card .pinfo {
-    padding-bottom: 28px;
-  }
-}
-
 .hero-quote {
   /* Illustration sizing stays shared when translated headlines use smaller type. */
   --quote-layout-size: clamp(44px, 5.235vw, 48px);

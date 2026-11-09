@@ -44,9 +44,9 @@ html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
 }
 
 /* Original project covers adapted to the existing alternating card layout. */
-:is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01, #vibecoding-project-02, #vibecoding-project-03) .pinfo { padding-bottom: 60px; }
-:is(#product-01, #product-03, #vibecoding-project-01, #vibecoding-project-03) .pnum { left: auto; right: 28px; text-align: right; }
-:is(#product-02, #product-04, #vibecoding-project-02) .pnum { left: 28px; right: auto; text-align: left; }
+:is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .pinfo { padding-bottom: 60px; }
+:is(#product-01, #product-03, #vibecoding-project-01) .pnum { left: auto; right: 28px; text-align: right; }
+:is(#product-02, #product-04) .pnum { left: 28px; right: auto; text-align: left; }
 .portfolio-cover { position: absolute; inset: 0; overflow: hidden; }
 .portfolio-cover-image {
   display: block;
@@ -81,9 +81,9 @@ html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
 #vibecoding-project-01:is(:hover, :focus-within) .bing-app-illustration { transform: scale(1.025); }
 @media (max-width: 760px) {
   :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .stage { height: auto; }
-  :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01, #vibecoding-project-02, #vibecoding-project-03) .pinfo { padding-bottom: 40px; }
-  :is(#product-01, #product-03, #vibecoding-project-01, #vibecoding-project-03) .pnum { right: 18px; }
-  :is(#product-02, #product-04, #vibecoding-project-02) .pnum { left: 18px; }
+  :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .pinfo { padding-bottom: 40px; }
+  :is(#product-01, #product-03, #vibecoding-project-01) .pnum { right: 18px; }
+  :is(#product-02, #product-04) .pnum { left: 18px; }
   .project-card-meta { margin-bottom: 8px; font-size: 11px; }
   .bing-app-card .project-card-meta { font-size: 11px; }
 }
