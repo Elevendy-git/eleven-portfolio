@@ -303,10 +303,6 @@ html[lang='en'] .hero-quote {
   --quote-bridge-size: clamp(28px, 3.5vw, 36px);
 }
 
-@media (min-width: 761px) {
-  html[lang='en'] .hero-quote .hero-illo { left: 20px; }
-}
-
 html[lang='en'] .pinfo h3 {
   font-size: clamp(28px, 3.5vw, 36px);
   line-height: 1.08;
