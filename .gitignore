@@ -4,18 +4,6 @@ __pycache__/
 
 # Local exports, screenshots, and other working files.
 work/**
-!work/i18n/
-!work/i18n/build-site.py
-!work/i18n/language-navigation-check.cjs
-!work/portfolio/
-!work/portfolio/update-project-cards.py
-!work/portfolio/sync-project-assets.py
-!work/portfolio/cards-plan.json
-!work/portfolio/*-export-plan.json
-!work/portfolio/interaction-check/
-!work/portfolio/interaction-check/card-input-state.cjs
-!work/deploy/
-!work/deploy/build-pages.py
 
 # Generated GitHub Pages website.
 _site/

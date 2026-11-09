@@ -28,7 +28,14 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Build static website
-        run: python3 work/deploy/build-pages.py --base-path /eleven-portfolio/ --output-dir _site
+        run: python3 tools/build/build_pages.py --base-path /eleven-portfolio/ --output-dir _site
+      - name: Verify website and interactions
+        run: |
+          python3 tests/site_integrity_test.py
+          python3 tests/site_integrity_test.py --site-dir _site --base-path /eleven-portfolio/
+          node tests/language-navigation.test.cjs
+          node tests/card-interaction.test.cjs
+          node tests/dialog-controller.test.cjs
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v3
         with:

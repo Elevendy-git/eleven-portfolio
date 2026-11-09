@@ -1,0 +1,151 @@
+/* Project covers share the same 16:10 frame. */
+:is(#product-01, #product-02, #product-03, #product-04) .stage {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f3f3f3;
+  isolation: isolate;
+}
+
+/* Original game cover, recomposed for the existing portfolio card. */
+#product-01 .stage { background: #0e0e0e; }
+.delysium-cover { position: absolute; inset: 0; overflow: hidden; }
+.delysium-cover::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(#ffffff06 1px, transparent 1px), linear-gradient(90deg, #ffffff06 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.delysium-cover-character {
+  position: absolute; left: -3%; bottom: -5%; width: 67%; height: 105%;
+  object-fit: cover; object-position: left top;
+  transition: transform .65s var(--ease);
+}
+.delysium-cover-wordmark {
+  position: absolute; left: 64%; top: 33%; width: 31%; height: auto;
+}
+.delysium-cover-label {
+  position: absolute; left: 64%; top: 58%; width: 31%;
+  display: block; padding: 7px 2px; background: #fae232; color: #141414;
+  font: 700 clamp(8px, .9vw, 11px)/1.2 ui-sans-serif, system-ui, sans-serif;
+  text-align: center; white-space: nowrap;
+}
+#product-01 .pbrand { display: grid; place-items: center; border-radius: 0; overflow: visible; }
+#product-01 .pbrand img { width: auto; height: 34px; object-fit: contain; }
+#product-01 .project-card-meta { line-height: 1.5; }
+#product-01:hover h3, #product-01:focus-within h3 { background-size: 100% 42%; }
+#product-01:hover .delysium-cover-character, #product-01:focus-within .delysium-cover-character { transform: scale(1.025); }
+#product-01:active .delysium-cover-character { transform: scale(1); }
+html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
+@media (max-width: 760px) {
+  .delysium-cover-label { font-size: 8px; padding-block: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #product-01 .delysium-cover-character { transition: none; }
+}
+
+/* Original project covers adapted to the existing alternating card layout. */
+:is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01, #vibecoding-project-02, #vibecoding-project-03) .pinfo { padding-bottom: 60px; }
+:is(#product-01, #product-03, #vibecoding-project-01, #vibecoding-project-03) .pnum { left: auto; right: 28px; text-align: right; }
+:is(#product-02, #product-04, #vibecoding-project-02) .pnum { left: 28px; right: auto; text-align: left; }
+.portfolio-cover { position: absolute; inset: 0; overflow: hidden; }
+.portfolio-cover-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .65s var(--ease);
+}
+.project-card-meta { margin: 0 0 12px; color: var(--t2); font-size: 12px; line-height: 1.5; }
+:is(#product-02, #product-03, #product-04) .pbrand { display: grid; place-items: center; background: transparent; border-radius: 0; }
+:is(#product-02, #product-03, #product-04) .pbrand img { width: 100%; height: 100%; object-fit: contain; }
+#product-04 .pbrand { width: 52px; height: auto; flex: 0 0 52px; overflow: visible; }
+#product-04 .pbrand img { height: auto; filter: none; }
+:is(#product-02, #product-03, #product-04):is(:hover, :focus-within) h3 { background-size: 100% 42%; }
+:is(#product-02, #product-03, #product-04):is(:hover, :focus-within) .portfolio-cover-image { transform: scale(1.025); }
+@media (max-width: 760px) {
+  :is(#product-01, #product-02, #product-03, #product-04) .stage { height: auto; }
+  :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01, #vibecoding-project-02, #vibecoding-project-03) .pinfo { padding-bottom: 40px; }
+  :is(#product-01, #product-03, #vibecoding-project-01, #vibecoding-project-03) .pnum { right: 18px; }
+  :is(#product-02, #product-04, #vibecoding-project-02) .pnum { left: 18px; }
+  .project-card-meta { margin-bottom: 8px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-cover-image { transition: none; }
+}
+
+/* Real pointer hover and keyboard navigation activate the existing effects.
+   Restored pointer focus and touch-only :hover stay in the resting state. */
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card) {
+  --card-hover-y: 0px;
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
+  :is(.pnum, .pbrand, .go .arr, .portfolio-cover-image, .delysium-cover-character, .experience-no) {
+  transform: none;
+}
+
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
+  :is(.pinfo h3, .sname, .experience-copy h3) {
+  background-size: 0 42%;
+}
+
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard) .go {
+  color: #666;
+}
+
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
+  :is(.sopen, .experience-arrow) {
+  background: transparent;
+  border-color: var(--line);
+  transform: none;
+}
+
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
+  .card-spotlight {
+  opacity: 0;
+}
+
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
+  .sillo img {
+  filter: drop-shadow(0 12px 18px #0000001a);
+  transform: translateX(-50%) rotate(1deg);
+}
+
+html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
+  :is(.microsoft-art, .portfolio-scene-art) {
+  transform: translateY(-50%);
+}
+
+/* A pointer-opened modal can close with Escape. Native focus-visible heuristics
+   then differ across browsers, so the saved activation controls this outline. */
+html .col .card-hitbox:not(.card-keyboard-focus)
+  :is(.project-trigger, .experience-trigger) {
+  outline: none;
+}
+html .col .card-hitbox.card-keyboard-focus
+  > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card) {
+  outline: 2px solid var(--ink, #242424);
+  outline-offset: 5px;
+}
+html .col .card-hitbox.card-keyboard-focus
+  :is(.project-trigger, .experience-trigger) {
+  outline: none;
+}
+
+@media (max-width: 760px) {
+  html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
+    > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
+    :is(.microsoft-art, .portfolio-scene-art) {
+    transform: none;
+  }
+}
