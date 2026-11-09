@@ -1,0 +1,34 @@
+{
+  "title": "Bard AI",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "项目概览与设计系统",
+      "src": "/assets/bard-ai/frame-01-2x.png",
+      "width": 2560,
+      "height": 16530
+    },
+    {
+      "id": "core-experience",
+      "title": "登录 · 首页与应用详情",
+      "src": "/assets/bard-ai/frame-02-2x.webp",
+      "width": 2560,
+      "height": 13294
+    },
+    {
+      "id": "discovery-content",
+      "title": "搜索 · 发现与内容发布",
+      "src": "/assets/bard-ai/frame-03-2x.webp",
+      "width": 2560,
+      "height": 11150
+    },
+    {
+      "id": "chat-settings",
+      "title": "AI 对话 · 设置与深色模式",
+      "src": "/assets/bard-ai/frame-04-2x.webp",
+      "width": 2560,
+      "height": 11558
+    }
+  ],
+  "period": "2024"
+}

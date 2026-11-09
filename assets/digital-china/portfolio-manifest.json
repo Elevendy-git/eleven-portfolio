@@ -1,0 +1,27 @@
+{
+  "title": "神州数码",
+  "sections": [
+    {
+      "id": "overview-and-system",
+      "title": "项目概览与设计规范",
+      "src": "/assets/digital-china/frame-01-2x.webp",
+      "width": 2560,
+      "height": 7200
+    },
+    {
+      "id": "website-design",
+      "title": "官网页面设计",
+      "src": "/assets/digital-china/frame-02-2x.png",
+      "width": 2560,
+      "height": 17086
+    },
+    {
+      "id": "ai-content",
+      "title": "AI 内容生成",
+      "src": "/assets/digital-china/frame-03-2x.webp",
+      "width": 2560,
+      "height": 1440
+    }
+  ],
+  "period": "2023"
+}

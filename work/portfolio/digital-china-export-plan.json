@@ -1,0 +1,38 @@
+{
+  "slug": "digital-china",
+  "title": "神州数码",
+  "period": "2023",
+  "source_dir": "../digital-china/frames-2x",
+  "sections": [
+    {
+      "id": "overview-and-system",
+      "title": "项目概览与设计规范",
+      "frames": [
+        "1.Digital China.png"
+      ]
+    },
+    {
+      "id": "website-design",
+      "title": "官网页面设计",
+      "frames": [
+        "2.Digital China.png"
+      ]
+    },
+    {
+      "id": "ai-content",
+      "title": "AI 内容生成",
+      "frames": [
+        "3.Digital China.png"
+      ]
+    }
+  ],
+  "cover": {
+    "frame": "card-cover-user-selected-16x10-2x.png",
+    "box": [
+      0,
+      0,
+      2560,
+      1600
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Local exports, screenshots, and other working files.
+work/**
+!work/i18n/
+!work/i18n/build-site.py
+!work/i18n/language-navigation-check.cjs
+!work/portfolio/
+!work/portfolio/update-project-cards.py
+!work/portfolio/sync-project-assets.py
+!work/portfolio/cards-plan.json
+!work/portfolio/*-export-plan.json
+!work/portfolio/interaction-check/
+!work/portfolio/interaction-check/card-input-state.cjs
+
+# Local credentials and tool environments.
+.env
+.env.*
+!.env.example
+.venv/
+node_modules/

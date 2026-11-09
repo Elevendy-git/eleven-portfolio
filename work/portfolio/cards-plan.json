@@ -1,0 +1,53 @@
+{
+  "cards": [
+    {
+      "number": 2,
+      "id": "digital-china",
+      "title": "神州数码",
+      "meta": "官网优化 · 2023",
+      "description": "围绕官网的信息层级、视觉规范与多端页面，优化品牌呈现和浏览体验。",
+      "url": "https://www.figma.com/design/8HdZmBq2w1oBD00XlrxQVk/Portfolio?node-id=1875-5823",
+      "cover": {
+        "src": "/assets/digital-china/cover.webp?v=aa883f3055b3",
+        "width": 1600,
+        "height": 1000
+      },
+      "logo": {
+        "src": "/assets/digital-china/logo-mark.png?v=7198fb1b103e",
+        "width": 40,
+        "height": 31
+      }
+    },
+    {
+      "number": 3,
+      "id": "deep-blue",
+      "title": "深蓝社区",
+      "meta": "兴趣社区 · App 设计 · 2024",
+      "description": "从兴趣选择、频道交流到动态分享，设计围绕共同兴趣连接的移动社区。",
+      "url": "https://www.figma.com/design/8HdZmBq2w1oBD00XlrxQVk/Portfolio?node-id=2250-500",
+      "cover": {
+        "src": "/assets/deep-blue/cover.webp?v=a61c7acd757d",
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "number": 4,
+      "id": "bard-ai",
+      "title": "Bard AI",
+      "meta": "AI 工具整合平台 · App 设计 · 2024",
+      "description": "围绕 AI 工具发现、资讯浏览和智能对话，设计一套移动端体验。",
+      "url": "https://www.figma.com/design/mBp3DgYZ1sL6R9EzcIwIH6/Bard-AI?node-id=799-110",
+      "cover": {
+        "src": "/assets/bard-ai/cover.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "logo": {
+        "src": "/assets/bard-ai/logo.png?v=9c0aad3fe91a",
+        "width": 512,
+        "height": 477
+      }
+    }
+  ]
+}

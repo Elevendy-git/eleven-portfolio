@@ -1,0 +1,45 @@
+{
+  "slug": "bard-ai",
+  "title": "Bard AI",
+  "period": "2024",
+  "source_dir": "/Users/ding/Downloads/bard-ai-frames-2x",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "项目概览与设计系统",
+      "frames": [
+        "1.Bard AI.png"
+      ]
+    },
+    {
+      "id": "core-experience",
+      "title": "登录 · 首页与应用详情",
+      "frames": [
+        "2.Bard AI.png"
+      ]
+    },
+    {
+      "id": "discovery-content",
+      "title": "搜索 · 发现与内容发布",
+      "frames": [
+        "3.Bard AI.png"
+      ]
+    },
+    {
+      "id": "chat-settings",
+      "title": "AI 对话 · 设置与深色模式",
+      "frames": [
+        "4.Bard AI.png"
+      ]
+    }
+  ],
+  "cover": {
+    "frame": "1.Bard AI.png",
+    "box": [
+      128,
+      0,
+      2432,
+      1440
+    ]
+  }
+}

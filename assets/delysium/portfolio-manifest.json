@@ -1,0 +1,55 @@
+{
+  "sections": [
+    {
+      "id": "overview",
+      "title": "项目概览",
+      "src": "/assets/delysium/overview-2x.webp",
+      "width": 2560,
+      "height": 5960
+    },
+    {
+      "id": "sso-process",
+      "title": "账户登录 · 研究与流程",
+      "src": "/assets/delysium/sso-process-2x.webp",
+      "width": 2560,
+      "height": 12744
+    },
+    {
+      "id": "sso-design",
+      "title": "账户登录 · 页面设计",
+      "src": "/assets/delysium/sso-design-2x.png",
+      "width": 2560,
+      "height": 21278
+    },
+    {
+      "id": "dma",
+      "title": "DMA · 官网设计",
+      "src": "/assets/delysium/dma-2x.webp",
+      "width": 2560,
+      "height": 4396
+    },
+    {
+      "id": "marketplace",
+      "title": "Marketplace · 资产管理",
+      "pages": [
+        {
+          "src": "/assets/delysium/marketplace-2x.webp",
+          "width": 2560,
+          "height": 2240
+        },
+        {
+          "src": "/assets/delysium/nft-2x.png",
+          "width": 2560,
+          "height": 19470
+        }
+      ]
+    },
+    {
+      "id": "design-system",
+      "title": "404 与设计系统",
+      "src": "/assets/delysium/design-system-2x.webp",
+      "width": 2560,
+      "height": 5490
+    }
+  ]
+}

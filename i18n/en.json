@@ -1,0 +1,299 @@
+{
+  "text": {
+    "设计的成长": "Growth in design",
+    "就是无数次尝试后的": "comes from trying until",
+    "茅塞顿开": "it clicks.",
+    "十一": "Eleven",
+    "↓ 往下滑": "↓ Scroll down",
+    "开启体感": "Enable tilt",
+    "语言": "Language",
+    "切换到中文": "Switch to Chinese",
+    "切换到英文": "Switch to English",
+    "正在准备首屏": "Loading the page",
+    "阅读进度 0%": "Reading progress 0%",
+    "内容分类": "Content categories",
+    "项目": "Projects",
+    "关于我": "About",
+    "Web3 游戏 · 2022—2023": "Web3 gaming · 2022–2023",
+    "从账户登录到 NFT 资产管理，为开放世界游戏打造连贯的 Web 体验。": "A seamless web experience for an open-world game, from account sign-in to NFT asset management.",
+    "神州数码": "Digital China",
+    "官网优化 · 2023": "Website redesign · 2023",
+    "围绕官网的信息层级、视觉规范与多端页面，优化品牌呈现和浏览体验。": "A clearer brand and browsing experience through refined information hierarchy, visual guidelines, and responsive pages.",
+    "深蓝社区": "Deep Blue Community",
+    "兴趣社区 · App 设计 · 2024": "Interest-based community · App design · 2024",
+    "从兴趣选择、频道交流到动态分享，设计围绕共同兴趣连接的移动社区。": "A mobile community that connects people through shared interests, from discovery to channel conversations and social posts.",
+    "AI 工具整合平台 · App 设计 · 2024": "AI tools platform · App design · 2024",
+    "围绕 AI 工具发现、资讯浏览和智能对话，设计一套移动端体验。": "A mobile experience for discovering AI tools, browsing news, and having intelligent conversations.",
+    "查看 Delysium 完整作品集": "Open the Delysium portfolio",
+    "查看 神州数码 完整作品集": "Open the Digital China portfolio",
+    "查看 深蓝社区 完整作品集": "Open the Deep Blue Community portfolio",
+    "查看 Bard AI 完整作品集": "Open the Bard AI portfolio",
+    "Vibe 项目 01": "Vibe project 01",
+    "Vibe 项目 02": "Vibe project 02",
+    "Vibe 项目 03": "Vibe project 03",
+    "这里将展示一个用自然语言逐步搭建的小工具，记录从想法到可运行体验的过程。": "A small tool built step by step with natural language, documenting the journey from an idea to a working experience.",
+    "这里将展示一个围绕日常场景制作的轻量应用，探索更顺手的交互与更简单的流程。": "A lightweight app for everyday tasks, exploring more intuitive interactions and simpler workflows.",
+    "这里将展示一个可以点击和体验的交互实验，记录设计、代码和持续迭代中的发现。": "An interactive experiment to try out, sharing discoveries from design, code, and ongoing iteration.",
+    "内容待补充": "Coming soon",
+    "内容待补充 ": "Coming soon ",
+    "丁祎，一名产品设计师。擅长理清复杂流程、打磨交互细节，也喜欢用原型和代码验证想法，让设计落到真实体验里。": "I'm Ding Yi, a product designer. I untangle complex workflows and refine interactions, using prototypes and code to test ideas and bring them into real experiences.",
+    "个人标签": "Design focus",
+    "4+ 年设计经验": "4+ years in design",
+    "AI 交互": "AI interaction",
+    "设计系统": "Design systems",
+    "跨端体验": "Cross-platform experiences",
+    "经历 / EXPERIENCE": "EXPERIENCE",
+    "从 API 到 Agent": "From APIs to agents",
+    "微软 Microsoft": "Microsoft",
+    "魔方尔斯特": "Mofang First",
+    "2024/11-至今 · 产品设计师": "Nov 2024–Present · Product Designer",
+    "曾在 · 2023/05-2024/11 · UI/UX 设计师": "May 2023–Nov 2024 · UI/UX Designer",
+    "曾在 · 2022/05-2023/05 · UI/UX 设计师": "May 2022–May 2023 · UI/UX Designer",
+    "十一与橘猫一起展示微软的四色方块": "Eleven and an orange cat presenting Microsoft's four-color logo",
+    "十一在右后方折叠网页，左前方的白色布偶猫帮忙压住纸张": "Eleven folding a webpage while a white ragdoll cat holds the paper in place",
+    "前景橘猫操作赛博朋克游戏终端，十一在后方观察记录": "An orange cat using a cyberpunk game terminal while Eleven observes and takes notes",
+    "查看微软 Microsoft 工作经历详情": "Open Microsoft work experience",
+    "查看神州数码工作经历详情": "Open Digital China work experience",
+    "查看魔方尔斯特工作经历详情": "Open Mofang First work experience",
+    "联系 / Elsewhere": "CONTACT / ELSEWHERE",
+    "Vibe Coding 术语与组件图鉴，用可视化示例给新手讲懂网页开发。": "An illustrated guide to vibe coding terms and components, explaining web development through visual examples.",
+    "开始探索": "Explore",
+    "Eleven 的产品设计作品集，记录项目、Vibecoding 实验与工作经历。": "Eleven's product design portfolio, featuring projects, vibe coding experiments, and work experience.",
+    "Eleven — 产品设计作品集": "Eleven — Product design portfolio",
+    "丁祎": "Ding Yi",
+    "产品设计师": "Product Designer"
+  },
+  "experienceDescriptions": {
+    "microsoft": "Designing product experiences for Bing App, Copilot Mac, and AI agents.",
+    "digital-china": "Designing enterprise websites, event platforms, and data products, streamlining workflows and improving experiences across devices.",
+    "delysium": "Designing UI/UX and conducting user research for Delysium, refining interactions and supporting development through delivery."
+  },
+  "messages": {
+    "Common": {
+      "language": "Language",
+      "switchZh": "Switch to Chinese",
+      "switchEn": "Switch to English",
+      "chinese": "中文",
+      "illustration": "{name} illustration",
+      "visit": "Visit {name}",
+      "stars": "{count} GitHub stars",
+      "price": "CNY {amount}, one-time purchase, lifetime updates",
+      "priceLabel": "one-time",
+      "month": "mo",
+      "backHome": "Back to home",
+      "progress": "Reading progress {percent}%",
+      "motionOpening": "Enabling tilt",
+      "motionOff": "Tilt not enabled",
+      "copyright": "© 2026 Eleven",
+      "zhLabel": "中",
+      "enLabel": "EN"
+    },
+    "WorksNav": {
+      "arialabel01": "Content categories",
+      "text02": "Projects",
+      "text03": "Vibecoding",
+      "text05": "About"
+    },
+    "InitialLoader": {
+      "arialabel01": "Loading the page"
+    },
+    "WolfchaDemo": {
+      "line01": "No one died last night",
+      "line02": "I'm the hunter. Don't vote me!",
+      "line03": "I'm the seer. No. 4 is a wolf",
+      "line04": "I guarded No. 5 last night",
+      "line05": "I saved No. 2 last night",
+      "text06": "You"
+    },
+    "TextWellDemo": {
+      "text01": "AI tools ",
+      "text02": " changed how we write,",
+      "text03": "and ",
+      "text04": " now easier ",
+      "text05": " ever to",
+      "text06": "polish a draft in minutes.",
+      "text07": "3 fixes applied",
+      "from01": "has",
+      "to01": "have",
+      "from02": "its",
+      "to02": "it’s",
+      "from03": "then",
+      "to03": "than"
+    },
+    "VibeHubDemo": {
+      "text01": "Hover me",
+      "text02": "Lift + color",
+      "text03": "Hover here",
+      "text04": "Compare",
+      "text05": "No change",
+      "text06": "Hover each item to compare its response",
+      "arialabel07": "Replay spring animation",
+      "text08": "Overshoot, then settle",
+      "text09": "Replay",
+      "text10": "Click the track or Replay to try again",
+      "text11": "Cloudtop Lodge",
+      "text12": "backdrop-filter: blur(",
+      "text13": "px)",
+      "text14": "blur:",
+      "text15": "Toggle to compare the background blur",
+      "cn16": "Hover",
+      "cat17": "Pointer",
+      "quote18": "A button changes color on hover to show you can click it.",
+      "cn19": "Spring",
+      "cat20": "Motion",
+      "quote21": "A small bounce makes a dialog feel like it's settling on a spring.",
+      "cn22": "Glass",
+      "cat23": "Style",
+      "quote24": "A translucent navigation bar blurs the content scrolling behind it.",
+      "text25": "N°",
+      "arialabel26": "Previous term",
+      "arialabel27": "Next term",
+      "switchTerm": "Show {term}"
+    },
+    "SelectorDemo": {
+      "text01": "1. button \"Get started\" → round corners",
+      "text02": "2. card \"Launch week\" → light yellow",
+      "text03": "// Pick elements to build a prompt",
+      "text04": "✓ Copied — paste into AI"
+    },
+    "NotchNotesDemo": {
+      "text01": "## Weekend ideas",
+      "text02": "- Soften page shadows",
+      "text03": "- [ ] Draft a landing page",
+      "text04": "Finder",
+      "text05": "File",
+      "text06": "Edit",
+      "text07": "View",
+      "text08": "B",
+      "text09": "I"
+    },
+    "OilFindDemo": {
+      "when01": "Today 15:54",
+      "size02": "374 bytes",
+      "when03": "Today 15:51",
+      "when04": "Today 11:49",
+      "when05": "Yesterday 16:12",
+      "size06": "Folder",
+      "chipFolders": "Folders",
+      "name07": "api-docs.md",
+      "when08": "Today 09:31",
+      "when09": "Mar 14",
+      "text10": "All",
+      "text11": "Apps",
+      "text12": "Docs",
+      "text13": "Images",
+      "text14": "Code",
+      "text15": "Try: wd, png, readme",
+      "text16": "Measured · 5,156 items · 0.2 ms",
+      "text17": "Open",
+      "measured": "Measured · {count} items · {ms} ms",
+      "demoData": "Demo data · {count} items"
+    },
+    "OilGitDemo": {
+      "history": "Commits",
+      "files": "Changed files",
+      "commits": [
+        {
+          "title": "Set up the app",
+          "hash": "0f3b6c2",
+          "files": [
+            {
+              "name": "src/app.ts",
+              "status": "A"
+            },
+            {
+              "name": "package.json",
+              "status": "A"
+            }
+          ],
+          "lines": [
+            "+ export const title = \"Taskboard\";",
+            "+ export const tasks = [];",
+            "+ render(tasks);",
+            "+ export default App;"
+          ]
+        },
+        {
+          "title": "Add task list",
+          "hash": "2e671ab",
+          "files": [
+            {
+              "name": "src/tasks.ts",
+              "status": "A"
+            },
+            {
+              "name": "src/app.ts",
+              "status": "M"
+            }
+          ],
+          "lines": [
+            "+ export const tasks = [];",
+            "+ const visible = tasks;",
+            "+ render(visible);",
+            "+ export { tasks };"
+          ]
+        },
+        {
+          "title": "Refine theme",
+          "hash": "4c9f208",
+          "files": [
+            {
+              "name": "src/app.ts",
+              "status": "M"
+            },
+            {
+              "name": "src/theme.css",
+              "status": "A"
+            }
+          ],
+          "lines": [
+            "  export const title = \"Taskboard\";",
+            "- const theme = \"light\";",
+            "+ const theme = \"dark\";",
+            "+ const accent = \"#2FBF71\";"
+          ]
+        },
+        {
+          "title": "Refine filters",
+          "hash": "7bd2e40",
+          "files": [
+            {
+              "name": "src/tasks.ts",
+              "status": "M"
+            },
+            {
+              "name": "release-notes.md",
+              "status": "A"
+            }
+          ],
+          "lines": [
+            "  export const tasks = [];",
+            "- const visible = tasks;",
+            "+ const visible = tasks.filter(",
+            "+   task => !task.done);"
+          ]
+        },
+        {
+          "title": "Merge filters",
+          "hash": "a83c91f",
+          "files": [
+            {
+              "name": "src/tasks.ts",
+              "status": "M"
+            },
+            {
+              "name": "src/app.ts",
+              "status": "M"
+            }
+          ],
+          "lines": [
+            "  import { tasks } from \"./tasks\";",
+            "- render(tasks);",
+            "+ render(visibleTasks);",
+            "+ export { filterTasks };"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "title": "深蓝社区",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "项目概览",
+      "src": "/assets/deep-blue/frame-01-2x.webp",
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "id": "research",
+      "title": "研究与机会",
+      "pages": [
+        {
+          "src": "/assets/deep-blue/frame-02-2x.webp",
+          "width": 2560,
+          "height": 2482
+        },
+        {
+          "src": "/assets/deep-blue/frame-03-2x.webp",
+          "width": 2560,
+          "height": 2828
+        },
+        {
+          "src": "/assets/deep-blue/frame-04-2x.webp",
+          "width": 2560,
+          "height": 1878
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "架构与原型",
+      "pages": [
+        {
+          "src": "/assets/deep-blue/frame-05-2x.webp",
+          "width": 2560,
+          "height": 2280
+        },
+        {
+          "src": "/assets/deep-blue/frame-06-2x.webp",
+          "width": 2560,
+          "height": 2816
+        }
+      ]
+    },
+    {
+      "id": "design-system",
+      "title": "设计规范与组件",
+      "pages": [
+        {
+          "src": "/assets/deep-blue/frame-07-2x.webp",
+          "width": 2560,
+          "height": 2982
+        },
+        {
+          "src": "/assets/deep-blue/frame-08-2x.webp",
+          "width": 2560,
+          "height": 4446
+        }
+      ]
+    },
+    {
+      "id": "channels",
+      "title": "兴趣与频道",
+      "pages": [
+        {
+          "src": "/assets/deep-blue/frame-09-2x.webp",
+          "width": 2560,
+          "height": 1440
+        },
+        {
+          "src": "/assets/deep-blue/frame-10-2x.webp",
+          "width": 2560,
+          "height": 3242
+        },
+        {
+          "src": "/assets/deep-blue/frame-11-2x.webp",
+          "width": 2560,
+          "height": 3882
+        },
+        {
+          "src": "/assets/deep-blue/frame-12-2x.webp",
+          "width": 2560,
+          "height": 5064
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "title": "动态与登录",
+      "pages": [
+        {
+          "src": "/assets/deep-blue/frame-13-2x.webp",
+          "width": 2560,
+          "height": 3842
+        },
+        {
+          "src": "/assets/deep-blue/frame-14-2x.webp",
+          "width": 2560,
+          "height": 3642
+        },
+        {
+          "src": "/assets/deep-blue/frame-15-2x.webp",
+          "width": 2560,
+          "height": 3042
+        },
+        {
+          "src": "/assets/deep-blue/frame-16-2x.webp",
+          "width": 2560,
+          "height": 2376
+        }
+      ]
+    }
+  ],
+  "period": "2024"
+}
