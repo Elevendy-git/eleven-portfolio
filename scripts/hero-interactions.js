@@ -20,6 +20,36 @@ document.addEventListener('DOMContentLoaded', function () {
   let visible = true;
   let activeTouch = null;
   let input = { active: false, x: 0, y: 0 };
+  let tap = null;
+  let lastTap = null;
+  let lastPointerType = 'mouse';
+  let navigating = false;
+
+  function clearTaps() { tap = lastTap = null; }
+
+  function openCatPilot() {
+    if (navigating) return;
+    navigating = true;
+    clearTaps();
+    releaseTouch();
+    reset();
+    location.assign('https://elevendy-git.github.io/orange-cat-pointer/pilot/');
+  }
+
+  function finishTap(event, type) {
+    if (event.pointerId !== tap?.pointerId) return;
+    const completed = tap;
+    tap = null;
+    const distance = Math.hypot(event.clientX - completed.x, event.clientY - completed.y);
+    if (type !== 'pointerup' || completed.moved || distance > 10 || event.timeStamp - completed.time > 300) {
+      lastTap = null;
+      return;
+    }
+    const next = { x: event.clientX, y: event.clientY, time: event.timeStamp };
+    if (lastTap && next.time - lastTap.time <= 350 &&
+        Math.hypot(next.x - lastTap.x, next.y - lastTap.y) <= 24) openCatPilot();
+    else lastTap = next;
+  }
 
   // Critically damp the angle before selecting one opaque sprite frame.
   function smoothDamp(current, target, velocity, smoothTime, dt) {
@@ -194,15 +224,29 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('pointerout', event => {
     if (event.pointerType === 'mouse' && event.relatedTarget === null) reset();
   });
-  window.addEventListener('blur', () => { releaseTouch(); reset(); });
+  window.addEventListener('blur', () => { clearTaps(); releaseTouch(); reset(); });
+
+  cat.addEventListener('dblclick', event => {
+    // Touch and pen double taps are recognized below, without treating a drag
+    // or a long press as a browser-generated double click.
+    if (event.button === 0 && lastPointerType === 'mouse') openCatPilot();
+  });
 
   cat.addEventListener('pointerdown', event => {
-    if (event.pointerType === 'mouse' || reducedMotion.matches || activeTouch !== null) return;
+    lastPointerType = event.pointerType;
+    if (event.pointerType === 'mouse') return;
+    if (event.isPrimary === false || tap !== null || activeTouch !== null) { clearTaps(); return; }
+    tap = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, time: event.timeStamp, moved: false };
+    if (reducedMotion.matches) return;
     activeTouch = event.pointerId;
     cat.setPointerCapture(event.pointerId);
     setInput({ active: true, x: event.clientX, y: event.clientY });
   });
   cat.addEventListener('pointermove', event => {
+    if (event.pointerId === tap?.pointerId && Math.hypot(event.clientX - tap.x, event.clientY - tap.y) > 10) {
+      tap.moved = true;
+      lastTap = null;
+    }
     if (event.pointerId === activeTouch) setInput({ active: true, x: event.clientX, y: event.clientY });
   }, { passive: true });
   function releaseTouch() {
@@ -212,12 +256,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (cat.hasPointerCapture(pointerId)) cat.releasePointerCapture(pointerId);
     input = { ...input, active: false };
   }
-  function releasePointer(event) {
+  function releasePointer(event, type) {
+    finishTap(event, type);
     if (event.pointerId !== activeTouch) return;
     releaseTouch();
     reset();
   }
-  for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) cat.addEventListener(type, releasePointer);
+  for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+    cat.addEventListener(type, event => releasePointer(event, type));
+  }
 
   const updateGeometry = () => controller?.update();
   window.addEventListener('resize', updateGeometry, { passive: true });
@@ -229,11 +276,12 @@ document.addEventListener('DOMContentLoaded', function () {
     controller?.setVisible();
   }).observe(cat);
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) releaseTouch();
+    if (document.hidden) { clearTaps(); releaseTouch(); }
     controller?.setVisible();
   });
 
   async function boot() {
+    clearTaps();
     releaseTouch();
     const token = ++bootToken;
     controller?.destroy();
@@ -255,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   reducedMotion.addEventListener('change', boot);
-  window.addEventListener('pagehide', () => { releaseTouch(); ++bootToken; controller?.destroy(); });
-  window.addEventListener('pageshow', event => { if (event.persisted) void boot(); });
+  window.addEventListener('pagehide', () => { clearTaps(); releaseTouch(); ++bootToken; controller?.destroy(); });
+  window.addEventListener('pageshow', event => { navigating = false; clearTaps(); if (event.persisted) void boot(); });
   void boot();
 });

@@ -9,6 +9,7 @@ function fixture({ reduceMotion = false } = {}) {
   const frames = new Map();
   const captures = new Set();
   const warnings = [];
+  const navigations = [];
   let frameId = 0;
   let now = 0;
   let requests = 0;
@@ -22,7 +23,7 @@ function fixture({ reduceMotion = false } = {}) {
     fire(type, properties = {}) {
       const event = {
         target: this, pointerId: 1, pointerType: 'touch', clientX: 100, clientY: 100,
-        relatedTarget: null, prevented: false,
+        relatedTarget: null, button: 0, isPrimary: true, timeStamp: now, prevented: false,
         preventDefault() { this.prevented = true; },
         ...properties,
       };
@@ -78,10 +79,12 @@ function fixture({ reduceMotion = false } = {}) {
     naturalHeight = 20;
     decode() { return Promise.resolve(); }
   }
+  const location = new URL('https://example.test/');
+  location.assign = url => navigations.push(String(url));
   vm.runInNewContext(source, {
     window, document, URL, Image, IntersectionObserver,
     ResizeObserver: class { observe() {} },
-    location: new URL('https://example.test/'),
+    location,
     matchMedia: () => media,
     fetch: async () => { requests++; return { ok: true, json: async () => manifest }; },
     requestAnimationFrame(callback) { const id = ++frameId; frames.set(id, callback); return id; },
@@ -116,10 +119,17 @@ function fixture({ reduceMotion = false } = {}) {
   }
   document.fire('DOMContentLoaded');
   return {
-    cat, window, document, media, character, captures, frames, eyes, inherited, settle, ready,
+    cat, window, document, media, character, captures, frames, navigations, eyes, inherited, settle, ready,
     setVisible(value) { intersection([{ isIntersecting: value }]); },
     get requests() { return requests; },
   };
+}
+
+function tap(page, { time, duration = 60, pointerId = 1, pointerType = 'touch', x = 130, y = 130 } = {}) {
+  const pointer = { pointerId, pointerType, clientX: x, clientY: y };
+  page.cat.fire('pointerdown', { ...pointer, timeStamp: time });
+  page.cat.fire('pointerup', { ...pointer, timeStamp: time + duration });
+  page.cat.fire('click', { ...pointer, detail: 1, timeStamp: time + duration });
 }
 
 async function main() {
@@ -211,7 +221,99 @@ async function main() {
     }
   }
 
-  console.log('Passed: touch gaze, captured drag, secondary pointers, release/cancel, mouse inheritance, reduced motion, and page lifecycle.');
+  const pilot = 'https://elevendy-git.github.io/orange-cat-pointer/pilot/';
+
+  // Native mouse double-click opens the pilot; ordinary and secondary clicks
+  // leave the portfolio in place.
+  {
+    const page = fixture();
+    await page.ready();
+    page.cat.fire('click', { pointerType: 'mouse', detail: 1 });
+    page.cat.fire('dblclick', { pointerType: 'mouse', button: 2 });
+    assert.deepEqual(page.navigations, []);
+    page.cat.fire('dblclick', { pointerType: 'mouse', button: 0 });
+    assert.deepEqual(page.navigations, [pilot]);
+  }
+
+  // A short second tap near the first opens the same destination on touch and
+  // pen input. A synthesized native double-click must not navigate twice.
+  for (const pointerType of ['touch', 'pen']) {
+    const page = fixture();
+    await page.ready();
+    tap(page, { time: 100, pointerType });
+    assert.deepEqual(page.navigations, [], 'One tap is not a navigation gesture.');
+    tap(page, { time: 280, pointerType, pointerId: 2, x: 142, y: 140 });
+    assert.deepEqual(page.navigations, [pilot], pointerType + ' double-tap opens the pilot.');
+    page.cat.fire('dblclick', { pointerType, timeStamp: 345 });
+    assert.deepEqual(page.navigations, [pilot], 'Native double-click synthesis cannot open it twice.');
+    assert.equal(page.captures.size, 0, 'Navigation must not leave a captured finger behind.');
+  }
+
+  // Long presses, distant taps, or a drag that returns to its start cannot be
+  // mistaken for the second tap.
+  for (const gesture of ['long press', 'late tap', 'distant tap', 'drag']) {
+    const page = fixture();
+    await page.ready();
+    tap(page, { time: 100 });
+    if (gesture === 'long press') tap(page, { time: 280, duration: 350 });
+    else if (gesture === 'late tap') tap(page, { time: 700 });
+    else if (gesture === 'distant tap') tap(page, { time: 280, x: 170, y: 170 });
+    else {
+      page.cat.fire('pointerdown', { timeStamp: 280, clientX: 130, clientY: 130 });
+      page.cat.fire('pointermove', { timeStamp: 300, clientX: 160, clientY: 130 });
+      page.cat.fire('pointermove', { timeStamp: 320, clientX: 130, clientY: 130 });
+      page.cat.fire('pointerup', { timeStamp: 340, clientX: 130, clientY: 130 });
+    }
+    page.cat.fire('dblclick', { pointerType: 'mouse', timeStamp: 750 });
+    assert.deepEqual(page.navigations, [], gesture + ' must not open the pilot.');
+    assert.equal(page.captures.size, 0);
+  }
+
+  // A canceled or interrupted gesture clears the pending tap, so the next
+  // ordinary tap starts fresh rather than completing a double-tap.
+  for (const interruption of ['pointercancel', 'lostpointercapture', 'second finger', 'blur', 'hidden', 'pagehide']) {
+    const page = fixture();
+    await page.ready();
+    tap(page, { time: 100 });
+    if (interruption === 'second finger') {
+      page.cat.fire('pointerdown', { timeStamp: 280, clientX: 130, clientY: 130 });
+      page.cat.fire('pointerdown', { pointerId: 2, isPrimary: false, timeStamp: 290 });
+      page.cat.fire('pointerup', { pointerId: 2, timeStamp: 300 });
+      page.cat.fire('pointerup', { timeStamp: 310, clientX: 130, clientY: 130 });
+    } else if (interruption === 'pointercancel' || interruption === 'lostpointercapture') {
+      page.cat.fire('pointerdown', { timeStamp: 280, clientX: 130, clientY: 130 });
+      page.cat.fire(interruption, { timeStamp: 300 });
+    } else if (interruption === 'hidden') {
+      page.document.hidden = true; page.document.fire('visibilitychange');
+      page.document.hidden = false; page.document.fire('visibilitychange');
+    } else {
+      page.window.fire(interruption);
+      if (interruption === 'pagehide') {
+        page.window.fire('pageshow', { persisted: true });
+        await page.ready();
+      }
+    }
+    tap(page, { time: 350, pointerId: 3 });
+    assert.deepEqual(page.navigations, [], interruption + ' must discard the pending first tap.');
+  }
+
+  // Reduced-motion users retain navigation without any pointer capture or
+  // animation. Returning through browser Back allows another double-tap.
+  {
+    const page = fixture({ reduceMotion: true });
+    await page.ready();
+    tap(page, { time: 100 }); tap(page, { time: 280, pointerId: 2 });
+    assert.deepEqual(page.navigations, [pilot]);
+    assert.equal(page.captures.size, 0);
+    assert.equal(page.requests, 0);
+    page.window.fire('pagehide');
+    page.window.fire('pageshow', { persisted: true });
+    await page.ready();
+    tap(page, { time: 1000, pointerId: 3 }); tap(page, { time: 1180, pointerId: 4 });
+    assert.deepEqual(page.navigations, [pilot, pilot]);
+  }
+
+  console.log('Passed: touch gaze, drag/reset, double-click/double-tap navigation, gesture rejection, reduced motion, and page lifecycle.');
 }
 
 main().catch(error => { console.error(error); process.exitCode = 1; });
