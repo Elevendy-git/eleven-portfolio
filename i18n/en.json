@@ -34,8 +34,6 @@
     "这里将展示一个用自然语言逐步搭建的小工具，记录从想法到可运行体验的过程。": "A small tool built step by step with natural language, documenting the journey from an idea to a working experience.",
     "这里将展示一个围绕日常场景制作的轻量应用，探索更顺手的交互与更简单的流程。": "A lightweight app for everyday tasks, exploring more intuitive interactions and simpler workflows.",
     "这里将展示一个可以点击和体验的交互实验，记录设计、代码和持续迭代中的发现。": "An interactive experiment to try out, sharing discoveries from design, code, and ongoing iteration.",
-    "内容待补充": "Coming soon",
-    "内容待补充 ": "Coming soon ",
     "丁祎，一名产品设计师。擅长理清复杂流程、打磨交互细节，也喜欢用原型和代码验证想法，让设计落到真实体验里。": "I'm Ding Yi, a product designer. I untangle complex workflows and refine interactions, using prototypes and code to test ideas and bring them into real experiences.",
     "个人标签": "Design focus",
     "4+ 年设计经验": "4+ years in design",
@@ -64,7 +62,6 @@
     "产品设计师": "Product Designer",
     "交互原型 · 组件工作台": "Interactive prototype · Component workbench",
     "从搜索、浏览到最近活动，把 Bing App 串成可交互原型，并将关键页面与组件状态整理成可探索的工作台。": "An interactive Bing App prototype connecting search, browsing, and recent activity, with a workbench for exploring key screens and component states.",
-    "打开项目 ": "Explore project ",
     "打开 Bing App 项目": "Open the Bing App project"
   },
   "experienceDescriptions": {

@@ -86,8 +86,6 @@ html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
 :is(#product-02, #product-03, #product-04, #vibecoding-project-01):is(:hover, :focus-within) h3 { background-size: 100% 42%; }
 :is(#product-02, #product-03, #product-04):is(:hover, :focus-within) .portfolio-cover-image { transform: scale(1.025); }
 #vibecoding-project-01:is(:hover, :focus-within) .bing-app-cover { transform: scale(1.025); }
-#vibecoding-project-01:is(:hover, :focus-within) .go { color: var(--ink); }
-#vibecoding-project-01:is(:hover, :focus-within) .go .arr { transform: translateX(6px); }
 @media (max-width: 760px) {
   :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .stage { height: auto; }
   :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01, #vibecoding-project-02, #vibecoding-project-03) .pinfo { padding-bottom: 40px; }
