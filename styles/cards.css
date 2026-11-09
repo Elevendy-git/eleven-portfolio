@@ -56,26 +56,19 @@ html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
   transition: transform .65s var(--ease);
 }
 
-/* Two live mobile screens form the Bing App preview. */
-.bing-app-cover {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background: linear-gradient(145deg, #eef4f9, #e3edf6);
+/* The transparent Bing App illustration blends into the white card. */
+#vibecoding-project-01 .stage {
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+}
+.bing-app-illustration {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   transition: transform .65s var(--ease);
 }
-.bing-app-cover img {
-  position: absolute;
-  width: auto;
-  height: 88%;
-  max-width: 42%;
-  object-fit: contain;
-  border: 1px solid #ffffffb3;
-  border-radius: clamp(8px, 1vw, 14px);
-  box-shadow: 0 8px 18px #16385f1a, 0 1px 3px #16385f0d;
-}
-.bing-app-cover-home { top: 4%; left: 20%; }
-.bing-app-cover-search { bottom: 4%; right: 20%; }
 
 .project-card-meta { margin: 0 0 12px; color: var(--t2); font-size: 12px; line-height: 1.5; }
 .bing-app-card .project-card-meta { font-size: 12px; line-height: 1.5; }
@@ -85,7 +78,7 @@ html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
 #product-04 .pbrand img { height: auto; filter: none; }
 :is(#product-02, #product-03, #product-04, #vibecoding-project-01):is(:hover, :focus-within) h3 { background-size: 100% 42%; }
 :is(#product-02, #product-03, #product-04):is(:hover, :focus-within) .portfolio-cover-image { transform: scale(1.025); }
-#vibecoding-project-01:is(:hover, :focus-within) .bing-app-cover { transform: scale(1.025); }
+#vibecoding-project-01:is(:hover, :focus-within) .bing-app-illustration { transform: scale(1.025); }
 @media (max-width: 760px) {
   :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .stage { height: auto; }
   :is(#product-01, #product-02, #product-03, #product-04, #vibecoding-project-01, #vibecoding-project-02, #vibecoding-project-03) .pinfo { padding-bottom: 40px; }
@@ -95,7 +88,7 @@ html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
   .bing-app-card .project-card-meta { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .portfolio-cover-image, .bing-app-cover { transition: none; }
+  .portfolio-cover-image, .bing-app-illustration { transition: none; }
 }
 
 /* Real pointer hover and keyboard navigation activate the existing effects.
@@ -109,7 +102,7 @@ html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
 
 html .col .card-hitbox:not(.card-pointer-hover):not(.card-keyboard-focus)
   > :is(#product-01, #product-02, #product-03, #product-04, .pcard, .scard, .experience-card)
-  :is(.pnum, .pbrand, .go .arr, .portfolio-cover-image, .bing-app-cover, .delysium-cover-character, .experience-no) {
+  :is(.pnum, .pbrand, .go .arr, .portfolio-cover-image, .bing-app-illustration, .delysium-cover-character, .experience-no) {
   transform: none;
 }
 
