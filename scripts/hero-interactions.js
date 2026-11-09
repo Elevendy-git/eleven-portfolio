@@ -1,4 +1,4 @@
-/* The supplied cat atlas is scrubbed by direction, never played as a video loop. */
+/* The cat and character share touch input; mouse eye movement stays inherited. */
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const sprite = cat?.querySelector('.hero-cat-sprite');
   const poster = cat?.querySelector('.hero-cat-poster');
   if (!cat || !sprite || !poster) return;
+  const illustration = cat.closest('.hero-illo');
+  const character = illustration?.querySelector('.hero-character');
 
   const manifestUrl = new URL('/assets/hero/cat-pointer/motion.json', location.href);
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -85,6 +87,17 @@ document.addEventListener('DOMContentLoaded', function () {
     let destroyed = false;
     let geometryDirty = true;
     let head = { x: 0, y: 0 };
+    let eyeBounds;
+    let eyeX = 0;
+    let eyeY = 0;
+    let ownsEyes = false;
+
+    function clearEyes() {
+      character?.style.removeProperty('--eye-x');
+      character?.style.removeProperty('--eye-y');
+      eyeX = eyeY = 0;
+      ownsEyes = false;
+    }
 
     function renderFrame(index) {
       if (index === frame) return;
@@ -118,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (geometryDirty) {
         const rect = cat.getBoundingClientRect();
         head = { x: rect.left + rect.width * mapping.headAnchor.x, y: rect.top + rect.height * mapping.headAnchor.y };
+        eyeBounds = illustration?.getBoundingClientRect();
         geometryDirty = false;
       }
       const dt = lastTime ? Math.min((now - lastTime) / 1000, 1 / 30) : 1 / 60;
@@ -131,7 +145,27 @@ document.addEventListener('DOMContentLoaded', function () {
       target = angle + deltaAngle(angle, target);
       [angle, velocity] = smoothDamp(angle, target, velocity, smoothTime, dt);
       renderFrame(nearestFrame(angle));
-      if (Math.abs(target - angle) > .01 || Math.abs(velocity) > .01) schedule();
+      let targetEyeX = 0;
+      let targetEyeY = 0;
+      if (activeTouch !== null && input.active && character && eyeBounds?.width && eyeBounds?.height) {
+        ownsEyes = true;
+        targetEyeX = 3.2 * (clamp((input.x - eyeBounds.left) / eyeBounds.width, 0, 1) * 2 - 1);
+        targetEyeY = 2.4 * (clamp((input.y - eyeBounds.top) / eyeBounds.height, 0, 1) * 2 - 1);
+      }
+      const eyeEase = 1 - Math.exp(-10 * dt);
+      eyeX += (targetEyeX - eyeX) * eyeEase;
+      eyeY += (targetEyeY - eyeY) * eyeEase;
+      const eyesMoving = Math.abs(targetEyeX - eyeX) > .03 || Math.abs(targetEyeY - eyeY) > .03;
+      if (ownsEyes) {
+        // Local values override the desktop runtime's inherited eye variables
+        // only for a touch gesture, then return control after easing to rest.
+        if (activeTouch === null && !eyesMoving) clearEyes();
+        else {
+          character.style.setProperty('--eye-x', `${eyeX.toFixed(2)}px`);
+          character.style.setProperty('--eye-y', `${eyeY.toFixed(2)}px`);
+        }
+      }
+      if (Math.abs(target - angle) > .01 || Math.abs(velocity) > .01 || eyesMoving) schedule();
       else { angle = wrap(angle); velocity = 0; lastTime = 0; }
     }
 
@@ -139,10 +173,15 @@ document.addEventListener('DOMContentLoaded', function () {
     return {
       update() { geometryDirty = true; schedule(); },
       setVisible() {
-        if ((!visible || document.hidden) && raf) { cancelAnimationFrame(raf); raf = 0; lastTime = 0; }
+        if (!visible || document.hidden) {
+          if (raf) cancelAnimationFrame(raf);
+          raf = 0;
+          lastTime = 0;
+          clearEyes();
+        }
         if (visible && !document.hidden) { geometryDirty = true; schedule(); }
       },
-      destroy() { destroyed = true; if (raf) cancelAnimationFrame(raf); },
+      destroy() { destroyed = true; if (raf) cancelAnimationFrame(raf); clearEyes(); },
     };
   }
 
@@ -150,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function reset() { setInput({ ...input, active: false }); }
 
   window.addEventListener('pointermove', event => {
-    if (event.pointerType === 'mouse') setInput({ active: true, x: event.clientX, y: event.clientY });
+    if (event.pointerType === 'mouse' && activeTouch === null) setInput({ active: true, x: event.clientX, y: event.clientY });
   }, { passive: true });
   window.addEventListener('pointerout', event => {
     if (event.pointerType === 'mouse' && event.relatedTarget === null) reset();
@@ -183,13 +222,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const updateGeometry = () => controller?.update();
   window.addEventListener('resize', updateGeometry, { passive: true });
   window.addEventListener('scroll', updateGeometry, { passive: true });
-  cat.closest('.hero-illo')?.addEventListener('animationend', updateGeometry);
+  illustration?.addEventListener('animationend', updateGeometry);
   new ResizeObserver(updateGeometry).observe(cat);
   new IntersectionObserver(entries => {
     visible = entries[0].isIntersecting;
     controller?.setVisible();
   }).observe(cat);
-  document.addEventListener('visibilitychange', () => controller?.setVisible());
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) releaseTouch();
+    controller?.setVisible();
+  });
 
   async function boot() {
     releaseTouch();

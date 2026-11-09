@@ -36,6 +36,7 @@ jobs:
           node tests/language-navigation.test.cjs
           node tests/card-interaction.test.cjs
           node tests/dialog-controller.test.cjs
+          node tests/hero-interactions.test.cjs
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v3
         with:
