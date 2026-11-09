@@ -61,7 +61,11 @@
     "Eleven 的产品设计作品集，记录项目、Vibecoding 实验与工作经历。": "Eleven's product design portfolio, featuring projects, vibe coding experiments, and work experience.",
     "Eleven — 产品设计作品集": "Eleven — Product design portfolio",
     "丁祎": "Ding Yi",
-    "产品设计师": "Product Designer"
+    "产品设计师": "Product Designer",
+    "交互原型 · 组件工作台": "Interactive prototype · Component workbench",
+    "从搜索、浏览到最近活动，把 Bing App 串成可交互原型，并将关键页面与组件状态整理成可探索的工作台。": "An interactive Bing App prototype connecting search, browsing, and recent activity, with a workbench for exploring key screens and component states.",
+    "打开项目 ": "Explore project ",
+    "打开 Bing App 项目": "Open the Bing App project"
   },
   "experienceDescriptions": {
     "microsoft": "Designing product experiences for Bing App, Copilot Mac, and AI agents.",
