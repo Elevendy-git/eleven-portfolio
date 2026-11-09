@@ -14,6 +14,11 @@ work/**
 !work/portfolio/*-export-plan.json
 !work/portfolio/interaction-check/
 !work/portfolio/interaction-check/card-input-state.cjs
+!work/deploy/
+!work/deploy/build-pages.py
+
+# Generated GitHub Pages website.
+_site/
 
 # Local credentials and tool environments.
 .env

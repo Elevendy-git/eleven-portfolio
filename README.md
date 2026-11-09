@@ -12,6 +12,10 @@ python3 -m http.server 5173 --bind 127.0.0.1
 
 GitHub 仓库为 `Elevendy-git/eleven-portfolio`。仓库包含可直接运行的中英文网站、正式素材和维护脚本；`work/` 中的原始导出与过程截图保留在本地，由 `.gitignore` 排除。重新处理 Figma 素材时，需准备原始导出，并在 Python 环境中安装 Pillow；日常预览和双语页面生成仅需 Python 标准库。
 
+GitHub Pages 通过 `.github/workflows/pages.yml` 自动发布，Pages 的 Source 需设置为 **GitHub Actions**。启用后，每次推送 `main` 都会重新构建并部署，目标地址为 https://elevendy-git.github.io/eleven-portfolio/ 。当前账号的免费套餐需要公开仓库才能启用 Pages。
+
+发布构建使用 `python3 work/deploy/build-pages.py --base-path /eleven-portfolio/ --output-dir _site`，只输出网站运行文件，自动生成中英文页并适配资源、语言切换、作品集目录及 Next 客户端数据的项目路径。本地根路径预览不受影响。生成的 `_site/` 不提交到仓库；预览发布产物时，应将它挂载在 `/eleven-portfolio/` 下。
+
 文件说明：
 
 - `index.html`：首页结构、内容及匹配的客户端加载数据。
