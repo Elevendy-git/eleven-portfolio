@@ -30,7 +30,9 @@ html.has-cursor-fx .vibe-placeholder-card .pinfo-main {
 }
 
 .hero-quote {
-  --quote-bridge-size: clamp(44px, 5.235vw, 48px);
+  /* Illustration sizing stays shared when translated headlines use smaller type. */
+  --quote-layout-size: clamp(44px, 5.235vw, 48px);
+  --quote-bridge-size: var(--quote-layout-size);
   --quote-illo-size: min(36vw, 330px);
   --quote-row-gap: 8px;
   --person-eye-follow: .5;
@@ -201,8 +203,8 @@ html.has-cursor-fx .vibe-placeholder-card .pinfo-main {
 
 @media (max-width: 760px) {
   .hero-quote {
-    --quote-bridge-size: clamp(18px, calc(5.1cqw + 2.04px), 40px);
-    --quote-illo-size: min(330px, calc((100cqw - var(--quote-bridge-size) * 8.8 + 2px) / .82));
+    --quote-layout-size: clamp(18px, calc(5.1cqw + 2.04px), 40px);
+    --quote-illo-size: min(330px, calc((100cqw - var(--quote-layout-size) * 8.8 + 2px) / .82));
     --quote-row-gap: 6px;
     --person-eye-follow: .35;
     container-type: inline-size;
@@ -299,10 +301,11 @@ html.has-cursor-fx .vibe-placeholder-card .pinfo-main {
 
 html[lang='en'] .hero-quote {
   --quote-bridge-size: clamp(28px, 3.5vw, 36px);
-  --quote-illo-size: min(30vw, 300px);
 }
 
-html[lang='en'] .hero-quote .hero-illo { left: 20px; }
+@media (min-width: 761px) {
+  html[lang='en'] .hero-quote .hero-illo { left: 20px; }
+}
 
 html[lang='en'] .pinfo h3 {
   font-size: clamp(28px, 3.5vw, 36px);
@@ -319,9 +322,7 @@ html[lang='en'] .experience-term { white-space: normal; }
 @media (max-width: 760px) {
   html[lang='en'] .hero-quote {
     --quote-bridge-size: clamp(15px, 4.2cqw, 30px);
-    --quote-illo-size: min(220px, 42cqw);
   }
-  html[lang='en'] .hero-quote .hero-illo { left: 8px; }
   html[lang='en'] .col .tabs {
     gap: 18px;
     flex-wrap: nowrap;
