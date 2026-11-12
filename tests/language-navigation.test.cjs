@@ -179,26 +179,26 @@ assert.deepEqual(historyVisit.navigations, [], 'Browser Back must retain its his
 const chineseReload = page({ local: preferenceSource.local, navigationType: 'reload' });
 assert.deepEqual(chineseReload.navigations, [], 'Reload must retain the explicitly opened Chinese address.');
 
-// New and previously shared Vibecoding links must preserve the selected panel
-// and wait for it to mount before restoring the language-switch position.
-for (const hash of ['#vibecoding', '#skills']) {
-  const source = page({ url: 'http://localhost:5173/?from=portfolio' + hash, activeTab: 'skills' });
+// Vibecoding links preserve the selected panel and wait for it to mount before
+// restoring the language-switch position.
+{
+  const source = page({ url: 'http://localhost:5173/?from=portfolio#vibecoding', activeTab: 'vibecoding' });
   source.click('en');
   assert.equal(source.navigations[0].url, 'http://localhost:5173/en/?from=portfolio#vibecoding');
   const target = page({ url: source.navigations[0].url, locale: 'en', y: 0,
     local: source.local, session: source.session, activeTab: 'products' });
   target.load();
   assert.deepEqual(target.scrolls, [], 'Wait for the Vibecoding panel before restoring.');
-  target.mutate({ active: 'skills' });
+  target.mutate({ active: 'vibecoding' });
   assert.equal(target.scrolls.length, 1);
 
   const legacySession = new Map([['eleven-language-position', JSON.stringify({
     path: '/en/', hash: '#skills', y: 900, anchor: '.tabs', offset: 100,
   })]]);
   const migrated = page({ url: source.navigations[0].url, locale: 'en', y: 0,
-    session: legacySession, activeTab: 'skills' });
+    session: legacySession, activeTab: 'vibecoding' });
   migrated.load();
-  assert.deepEqual(migrated.scrolls, [900], 'An older saved hash must survive URL normalization.');
+  assert.deepEqual(migrated.scrolls, [], 'An old hash must not be treated as the Vibecoding address.');
 }
 
 console.log('Passed: bilingual local routes, query/hash, 1752 px reading position, stable anchor, loader/tab readiness, native modified clicks, blocked storage, language preference, Back, and reload.');
