@@ -81,7 +81,7 @@ html.has-cursor-fx .project-placeholder-card .pinfo-main { cursor: none; }
 :is(#project-bing-app, #project-copilot-mac, #product-02, #product-03, #product-04, #vibecoding-project-01) .pbrand img { width: 100%; height: 100%; object-fit: contain; }
 #product-04 .pbrand { width: 52px; height: auto; flex: 0 0 52px; overflow: visible; }
 #product-04 .pbrand img { height: auto; filter: none; }
-:is(#product-02, #product-03, #product-04, #vibecoding-project-01):is(:hover, :focus-within) h3 { background-size: 100% 42%; }
+:is(#project-bing-app, #product-02, #product-03, #product-04, #vibecoding-project-01):is(:hover, :focus-within) h3 { background-size: 100% 42%; }
 :is(#product-02, #product-03, #product-04):is(:hover, :focus-within) .portfolio-cover-image { transform: scale(1.025); }
 #vibecoding-project-01:is(:hover, :focus-within) .bing-app-illustration { transform: scale(1.025); }
 @media (max-width: 760px) {

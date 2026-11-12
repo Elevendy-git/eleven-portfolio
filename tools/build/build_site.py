@@ -157,8 +157,8 @@ if __name__ == "__main__":
     chinese = build(refresh_versions((ROOT / "index.html").read_text()), "zh")
     english = build(chinese, "en")
     for locale, page in (("zh", chinese), ("en", english)):
-        if page.count('class="project-trigger"') != 4:
-            raise ValueError(f"{locale}: expected four project cards")
+        if page.count('class="project-trigger"') != 5:
+            raise ValueError(f"{locale}: expected five project readers")
     (ROOT / "index.html").write_text(chinese)
     (ROOT / "en/index.html").write_text(english)
     print("Built Chinese / and English /en/ with matching SSR, messages, and Flight data.")

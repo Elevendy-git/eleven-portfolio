@@ -14,7 +14,7 @@ from urllib.parse import unquote, urljoin, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROJECTS = ("delysium", "digital-china", "deep-blue", "bard-ai")
+PROJECTS = ("bing-app", "delysium", "digital-china", "deep-blue", "bard-ai")
 FLIGHT_PUSH = re.compile(r"^\s*self\.__next_f\.push\((.*)\)\s*;?\s*$", re.S)
 CSS_URL = re.compile(r"url\(\s*(?:'([^']*)'|\"([^\"]*)\"|([^)]*))\s*\)", re.I)
 
@@ -192,20 +192,62 @@ class IntegrityCheck:
                 sections = manifest["sections"]
                 if not isinstance(sections, list) or not sections:
                     raise ValueError("missing portfolio sections")
+                group_ids = set()
+                if "groups" in manifest:
+                    groups = manifest["groups"]
+                    if not isinstance(groups, list) or not groups:
+                        raise ValueError("missing portfolio groups")
+                    for group in groups:
+                        if not isinstance(group.get("id"), str) or not re.fullmatch(r"[A-Za-z0-9_-]+", group["id"]) or group["id"] in group_ids:
+                            raise ValueError("missing, invalid or duplicate group ID")
+                        if not isinstance(group.get("title"), str) or not group["title"].strip():
+                            raise ValueError("missing group title")
+                        group_ids.add(group["id"])
                 section_ids = set()
                 for section in sections:
-                    if not isinstance(section.get("id"), str) or section["id"] in section_ids:
-                        raise ValueError("missing or duplicate section ID")
+                    if not isinstance(section.get("id"), str) or not re.fullmatch(r"[A-Za-z0-9_-]+", section["id"]) or section["id"] in section_ids:
+                        raise ValueError("missing, invalid or duplicate section ID")
+                    if not isinstance(section.get("title"), str) or not section["title"].strip():
+                        raise ValueError("missing section title")
+                    if "group" in section and (not isinstance(section["group"], str) or section["group"] not in group_ids):
+                        raise ValueError("invalid section group")
+                    if "layout" in section and section["layout"] != "media-row":
+                        raise ValueError("invalid section layout")
                     section_ids.add(section["id"])
+                    if section.get("placeholder") is True:
+                        continue
+                    media_row = section.get("layout") == "media-row"
                     images = section.get("pages", [section])
                     if not isinstance(images, list) or not images:
                         raise ValueError("missing portfolio images")
+                    row_dimensions = None
                     for image in images:
+                        if any(type(image.get(key)) is not int or image[key] < 1 for key in ("width", "height")):
+                            raise ValueError("invalid media dimensions")
+                        if media_row:
+                            if image.get("type") not in ("video", "placeholder"):
+                                raise ValueError("media rows only support videos and placeholders")
+                            dimensions = (image["width"], image["height"])
+                            if row_dimensions is not None and dimensions != row_dimensions:
+                                raise ValueError("media row dimensions must match")
+                            row_dimensions = dimensions
+                        if image.get("type") == "placeholder":
+                            if not media_row:
+                                raise ValueError("media placeholders require a media row")
+                            continue
                         src = image["src"]
                         if not isinstance(src, str) or not src.startswith(self.base + f"assets/{project}/"):
                             raise ValueError(f"image path is outside its project: {src!r}")
-                        if any(type(image.get(key)) is not int or image[key] < 1 for key in ("width", "height")):
-                            raise ValueError(f"invalid image dimensions: {src}")
+                        if image.get("type") == "video":
+                            poster = image["poster"]
+                            project_dir = (self.site / "assets" / project).resolve()
+                            for name, value in (("video", src), ("poster", poster)):
+                                if not isinstance(value, str) or not value.startswith(self.base + f"assets/{project}/"):
+                                    raise ValueError(f"{name} path is outside its project: {value!r}")
+                                asset_path = unquote(urlsplit(value).path)[len(self.base):]
+                                if not (self.site / asset_path).resolve().is_relative_to(project_dir):
+                                    raise ValueError(f"{name} path is outside its project: {value!r}")
+                            self.reference(poster, self.base, relative)
                         self.reference(src, self.base, relative)
                 self.counts["manifests"] += 1
             except (json.JSONDecodeError, KeyError, TypeError, ValueError, AttributeError) as error:

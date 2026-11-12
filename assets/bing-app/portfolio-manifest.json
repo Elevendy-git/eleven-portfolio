@@ -1,0 +1,42 @@
+{
+  "groups": [
+    { "id": "global", "title": "Bing App Global", "shortTitle": "Global" },
+    { "id": "china", "title": "Bing China", "shortTitle": "China" }
+  ],
+  "sections": [
+    { "id": "global-home", "group": "global", "title": "Home page", "placeholder": true },
+    { "id": "global-search", "group": "global", "title": "Search", "placeholder": true },
+    { "id": "global-recent", "group": "global", "title": "Recent", "placeholder": true },
+    { "id": "china-fre", "group": "china", "title": "FRE", "placeholder": true },
+    { "id": "china-ai-summary", "group": "china", "title": "AI summary", "placeholder": true },
+    {
+      "id": "china-ai-daily",
+      "group": "china",
+      "title": "AI Daily",
+      "layout": "media-row",
+      "pages": [
+        {
+          "type": "video",
+          "src": "/assets/bing-app/ai-daily.mp4",
+          "poster": "/assets/bing-app/ai-daily-poster.webp",
+          "width": 1008,
+          "height": 1904
+        },
+        {
+          "type": "video",
+          "src": "/assets/bing-app/ai-daily-02.mp4",
+          "poster": "/assets/bing-app/ai-daily-02-poster.webp",
+          "width": 1008,
+          "height": 1904
+        },
+        {
+          "type": "video",
+          "src": "/assets/bing-app/ai-daily-03.mp4",
+          "poster": "/assets/bing-app/ai-daily-03-poster.webp",
+          "width": 1008,
+          "height": 1904
+        }
+      ]
+    }
+  ]
+}
