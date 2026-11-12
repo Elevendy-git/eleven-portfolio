@@ -57,10 +57,10 @@
     "交互原型 · 组件工作台": "Interactive prototype · Component workbench",
     "从搜索、浏览到最近活动，把 Bing App 串成可交互原型，并将关键页面与组件状态整理成可探索的工作台。": "An interactive Bing App prototype connecting search, browsing, and recent activity, with a workbench for exploring key screens and component states.",
     "打开 Bing App 项目": "Open the Bing App project",
-    "项目介绍与设计过程待补充。": "Project overview and design process to be added.",
     "查看 Bing App 详细内容": "View Bing App project details",
     "基于 Copilot 核心设计系统，补充 macOS 基础规范与 16 个关键组件，提升设计与研发的协作和迭代效率。": "Extending Copilot's core design system with macOS guidelines and 16 key components for better collaboration and faster iteration.",
-    "以 MAI 视觉语言重设计 Bing App 首页，优化排版、内容密度与模块层级，让用户更清晰地开始任务。": "Redesigning the Bing App homepage with MAI's visual language, refining typography, content density, and hierarchy to guide users into their next task."
+    "以 MAI 视觉语言重设计 Bing App 首页，优化排版、内容密度与模块层级，让用户更清晰地开始任务。": "Redesigning the Bing App homepage with MAI's visual language, refining typography, content density, and hierarchy to guide users into their next task.",
+    "为 macOS 打造原生 Copilot 体验，整合对话、任务与内容创作，让 AI 自然融入日常工作流程。": "Creating a native Copilot experience for macOS, bringing conversations, tasks, and content creation together to make AI a natural part of everyday workflows."
   },
   "experienceDescriptions": {
     "microsoft": "Designing product experiences for Bing App, Copilot Mac, and AI agents.",
