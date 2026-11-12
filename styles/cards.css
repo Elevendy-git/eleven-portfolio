@@ -1,5 +1,5 @@
 /* Project covers share the same 16:10 frame. */
-:is(#project-bing-app, #project-copilot-mac, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .stage {
+:is(#project-bing-app, #project-copilot-mac, #project-copilot-macos-ui-kit, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .stage {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 12px;
@@ -44,9 +44,9 @@ html.has-cursor-fx #product-01 .project-trigger { cursor: none; }
 }
 
 /* Original project covers adapted to the existing alternating card layout. */
-:is(#project-bing-app, #project-copilot-mac, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .pinfo { padding-bottom: 60px; }
-:is(#project-bing-app, #product-01, #product-03, #vibecoding-project-01) .pnum { left: auto; right: 28px; text-align: right; }
-:is(#project-copilot-mac, #product-02, #product-04) .pnum { left: 28px; right: auto; text-align: left; }
+:is(#project-bing-app, #project-copilot-mac, #project-copilot-macos-ui-kit, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .pinfo { padding-bottom: 60px; }
+.plist > .card-hitbox:nth-child(odd of .card-hitbox) > .pcard .pnum { left: auto; right: 28px; text-align: right; }
+.plist > .card-hitbox:nth-child(even of .card-hitbox) > .pcard .pnum { left: 28px; right: auto; text-align: left; }
 
 .project-placeholder-card .pinfo-main { cursor: default; }
 .project-placeholder-card .pinfo-main:active { opacity: 1; }
@@ -77,18 +77,18 @@ html.has-cursor-fx .project-placeholder-card .pinfo-main { cursor: none; }
 
 .project-card-meta { margin: 0 0 12px; color: var(--t2); font-size: 12px; line-height: 1.5; }
 .bing-app-card .project-card-meta { font-size: 12px; line-height: 1.5; }
-:is(#project-bing-app, #project-copilot-mac, #product-02, #product-03, #product-04, #vibecoding-project-01) .pbrand { display: grid; place-items: center; background: transparent; border-radius: 0; }
-:is(#project-bing-app, #project-copilot-mac, #product-02, #product-03, #product-04, #vibecoding-project-01) .pbrand img { width: 100%; height: 100%; object-fit: contain; }
+:is(#project-bing-app, #project-copilot-mac, #project-copilot-macos-ui-kit, #product-02, #product-03, #product-04, #vibecoding-project-01) .pbrand { display: grid; place-items: center; background: transparent; border-radius: 0; }
+:is(#project-bing-app, #project-copilot-mac, #project-copilot-macos-ui-kit, #product-02, #product-03, #product-04, #vibecoding-project-01) .pbrand img { width: 100%; height: 100%; object-fit: contain; }
 #product-04 .pbrand { width: 52px; height: auto; flex: 0 0 52px; overflow: visible; }
 #product-04 .pbrand img { height: auto; filter: none; }
 :is(#project-bing-app, #product-02, #product-03, #product-04, #vibecoding-project-01):is(:hover, :focus-within) h3 { background-size: 100% 42%; }
-:is(#product-02, #product-03, #product-04):is(:hover, :focus-within) .portfolio-cover-image { transform: scale(1.025); }
+:is(#project-bing-app, #product-02, #product-03, #product-04):is(:hover, :focus-within) .portfolio-cover-image { transform: scale(1.025); }
 #vibecoding-project-01:is(:hover, :focus-within) .bing-app-illustration { transform: scale(1.025); }
 @media (max-width: 760px) {
-  :is(#project-bing-app, #project-copilot-mac, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .stage { height: auto; }
-  :is(#project-bing-app, #project-copilot-mac, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .pinfo { padding-bottom: 40px; }
-  :is(#project-bing-app, #product-01, #product-03, #vibecoding-project-01) .pnum { right: 18px; }
-  :is(#project-copilot-mac, #product-02, #product-04) .pnum { left: 18px; }
+  :is(#project-bing-app, #project-copilot-mac, #project-copilot-macos-ui-kit, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .stage { height: auto; }
+  :is(#project-bing-app, #project-copilot-mac, #project-copilot-macos-ui-kit, #product-01, #product-02, #product-03, #product-04, #vibecoding-project-01) .pinfo { padding-bottom: 40px; }
+  .plist > .card-hitbox:nth-child(odd of .card-hitbox) > .pcard .pnum { right: 18px; }
+  .plist > .card-hitbox:nth-child(even of .card-hitbox) > .pcard .pnum { left: 18px; }
   .project-card-meta { margin-bottom: 8px; font-size: 11px; }
   .bing-app-card .project-card-meta { font-size: 11px; }
 }
