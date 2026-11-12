@@ -5,6 +5,10 @@
   const positionKey = 'eleven-language-position';
   const locale = document.documentElement?.lang.startsWith('en') ? 'en' : 'zh';
 
+  function canonicalHash(hash) {
+    return hash === '#skills' ? '#vibecoding' : hash;
+  }
+
   function remember(language) {
     try { localStorage.setItem(preferenceKey, language); } catch {}
     document.cookie = `NEXT_LOCALE=${language}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`;
@@ -13,7 +17,7 @@
   try {
     const navigationType = performance.getEntriesByType('navigation')[0]?.type;
     if (location.pathname === '/' && navigationType === 'navigate' && localStorage.getItem(preferenceKey) === 'en') {
-      location.replace('/en/' + location.search + location.hash);
+      location.replace('/en/' + location.search + canonicalHash(location.hash));
     } else if (locale === 'en') remember('en');
   } catch {}
 
@@ -46,7 +50,7 @@
     const language = anchor.lang.startsWith('en') ? 'en' : 'zh';
     const target = new URL(language === 'en' ? '/en/' : '/', location.href);
     target.search = location.search;
-    target.hash = location.hash;
+    target.hash = canonicalHash(location.hash);
     anchor.href = target.href;
     event.stopImmediatePropagation();
     remember(language);
@@ -66,7 +70,7 @@
       position = JSON.parse(stored);
       sessionStorage.removeItem(positionKey);
     } catch { return; }
-    if (position.path !== location.pathname || position.hash !== location.hash || !Number.isFinite(position.y)) return;
+    if (position.path !== location.pathname || canonicalHash(position.hash) !== canonicalHash(location.hash) || !Number.isFinite(position.y)) return;
     let restored = false;
     let fallback;
     const observer = new MutationObserver(ready);
@@ -83,7 +87,8 @@
       }));
     }
     function ready() {
-      const requestedTab = position.hash.slice(1);
+      const requestedHash = canonicalHash(position.hash).slice(1);
+      const requestedTab = requestedHash === 'vibecoding' ? 'skills' : requestedHash;
       const activeTab = document.querySelector('.works-shell')?.dataset.activeWork;
       const tabReady = !['products', 'skills', 'me'].includes(requestedTab) || activeTab === requestedTab;
       if (!document.documentElement.classList.contains('is-booting') && !document.querySelector('.site-loader') && tabReady) restore();

@@ -7,7 +7,7 @@
     { "id": "global-home", "group": "global", "title": "Home page", "placeholder": true },
     { "id": "global-search", "group": "global", "title": "Search", "placeholder": true },
     { "id": "global-recent", "group": "global", "title": "Recent", "placeholder": true },
-    { "id": "china-fre", "group": "china", "title": "FRE", "placeholder": true },
+    { "id": "china-fre", "group": "china", "title": "Homepage redesign", "placeholder": true },
     { "id": "china-ai-summary", "group": "china", "title": "AI summary", "placeholder": true },
     {
       "id": "china-ai-daily",
